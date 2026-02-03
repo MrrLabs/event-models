@@ -181,6 +181,10 @@ class TicketmasterEventAvailable(BaseModel):
 
         for place_data in event_data:
             dump_dict = place_data.model_dump()
+
+            if dump_dict.get("protected") is None:
+                dump_dict["protected"] = False
+
             places[dump_dict["place_id"]] = TicketmasterPlaceAvailable(**dump_dict)
 
         return cls(event_id=event_id, places=places, old_schema=False)
