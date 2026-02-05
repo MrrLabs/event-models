@@ -92,8 +92,7 @@ class ActionSchema(BaseModel):
     external_id: int | None = None
     action: ActionStatus
     data: ActionData | None = None
-    action_exchange_id: str | None = None
-    # TODO check Arb listing structure
+    action_exchange_id: int | None = None
     exchange_rules: list[str] | None = None
     external_mapping: dict[EventExchange, int] = {}
     exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
