@@ -119,8 +119,8 @@ class ActionSchema(BaseModel):
     dependent_to: int | None = None
     data: ActionData | None = None
     exchange_rules: dict[EventExchange, RuleType] | None = None
-    external_mapping: dict[EventExchange, int] = {}
-    exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
+    external_mapping: dict[EventExchange, int] | None = {}
+    exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] | None = Field(
         default_factory=dict,
         description="Per-exchange sync configuration",
     )
