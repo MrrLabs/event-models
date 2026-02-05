@@ -4,7 +4,7 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import Annotated, Any, DefaultDict, Optional, Self
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, field_validator
 
 from event_models.exchange.exchange import EventExchange
 
@@ -64,6 +64,11 @@ class ExchangeSyncConfigSchema(BaseModel):
     listings_to: datetime.datetime
     listings_limit: int | None
     price_markup: Decimal
+
+    @field_validator("price_markup", mode="before")
+    @classmethod
+    def validate_price_markup(cls, v: Decimal) -> Decimal:
+        return Decimal(v).quantize(Decimal("0.01"))
 
     @classmethod
     def from_orm(cls, obj: Any) -> Self:
