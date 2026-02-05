@@ -60,6 +60,7 @@ class ExchangeSyncConfigSchema(BaseModel):
     class Config:
         from_attributes = True
 
+
 class ActionData(BaseModel):
     source_id: str = Field(description="Source identifier")
     local_datetime: datetime.datetime = Field(description="Local date and time of the event")
@@ -80,14 +81,6 @@ class ActionData(BaseModel):
         default_factory=defaultdict,
         description="Per-exchange price markup",
     )
-    exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
-        default_factory=dict,
-        description="Per-exchange sync configuration",
-    )
-    exchange_count: dict[EventExchange, int] = Field(
-        default_factory=dict,
-        description="Per-exchange counts",
-    )
 
 
 class ActionSchema(BaseModel):
@@ -102,6 +95,14 @@ class ActionSchema(BaseModel):
     # TODO check Arb listing structure
     exchange_rules: list[str] | None = None
     external_mapping: dict[EventExchange, int] = {}
+    exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
+        default_factory=dict,
+        description="Per-exchange sync configuration",
+    )
+    exchange_count: dict[EventExchange, int] = Field(
+        default_factory=dict,
+        description="Per-exchange counts",
+    )
 
 
 class ActionLogSchema(BaseModel):
