@@ -40,6 +40,14 @@ class ActionError(enum.StrEnum):
     UNKNOWN_ERROR = "UNKNOWN_ERROR"
 
 
+class ExchangeSyncConfigSchema(BaseModel):
+    exchange: EventExchange
+    listings_from: datetime.datetime
+    listings_to: datetime.datetime
+    listings_limit: int | None
+    price_markup: Decimal
+
+
 class ActionData(BaseModel):
     source_id: str = Field(description="Source identifier")
     local_datetime: datetime.datetime = Field(description="Local date and time of the event")
@@ -59,6 +67,14 @@ class ActionData(BaseModel):
     price_markup: PriceMarkup = Field(
         default_factory=defaultdict,
         description="Per-exchange price markup",
+    )
+    exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
+        default_factory=dict,
+        description="Per-exchange sync configuration",
+    )
+    exchange_count: dict[EventExchange, int] = Field(
+        default_factory=dict,
+        description="Per-exchange counts",
     )
 
 
