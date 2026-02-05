@@ -103,13 +103,16 @@ class ActionData(BaseModel):
 
 class ActionSchema(BaseModel):
     action_id: int
+    action_exchange_id: int | None = None
+    action: ActionStatus
     created: datetime.datetime
     origin_id: int
+    exchange: EventExchange | None = None
     new_id: int | None = None
     external_id: int | None = None
-    action: ActionStatus
+    inventory_id: int
+    dependent_to: int | None = None
     data: ActionData | None = None
-    action_exchange_id: int | None = None
     exchange_rules: dict[EventExchange, RuleType] | None = None
     external_mapping: dict[EventExchange, int] = {}
     exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
