@@ -41,6 +41,23 @@ class ActionError(enum.StrEnum):
     DEPENDENT_ERROR = "DEPENDENT_ERROR"
 
 
+class RuleType(enum.StrEnum):
+    INCLUDE = "include"
+    EXCLUDE = "exclude"
+
+
+class ExchangeRule(BaseModel):
+    exchange: EventExchange
+    rule_type: RuleType
+    rule_ids: list[int]
+
+
+class ActionFilterReason(enum.StrEnum):
+    EXCHANGE_RULE = "exchange_rule"
+    DATE_FILTER = "date_filter"
+    MAX_LISTINGS_LIMIT = "max_listings_limit"
+
+
 class ExchangeSyncConfigSchema(BaseModel):
     exchange: EventExchange
     listings_from: datetime.datetime
@@ -93,7 +110,7 @@ class ActionSchema(BaseModel):
     action: ActionStatus
     data: ActionData | None = None
     action_exchange_id: int | None = None
-    exchange_rules: list[str] | None = None
+    exchange_rules: dict[EventExchange, RuleType] | None = None
     external_mapping: dict[EventExchange, int] = {}
     exchange_config: dict[EventExchange, ExchangeSyncConfigSchema] = Field(
         default_factory=dict,
