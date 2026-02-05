@@ -2,7 +2,7 @@ import datetime
 import enum
 from collections import defaultdict
 from decimal import Decimal
-from typing import Annotated, Any, DefaultDict, Optional
+from typing import Annotated, Any, DefaultDict, Optional, Self
 
 from pydantic import BaseModel, Field, model_validator
 
@@ -47,6 +47,18 @@ class ExchangeSyncConfigSchema(BaseModel):
     listings_limit: int | None
     price_markup: Decimal
 
+    @classmethod
+    def from_orm(cls, obj: Any) -> Self:
+        return cls(
+            exchange=EventExchange(obj.exchange),
+            listings_from=obj.listings_from,
+            listings_to=obj.listings_to,
+            listings_limit=obj.listings_limit,
+            price_markup=Decimal(obj.price_markup),
+        )
+
+    class Config:
+        from_attributes = True
 
 class ActionData(BaseModel):
     source_id: str = Field(description="Source identifier")
