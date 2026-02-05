@@ -38,6 +38,7 @@ class ActionError(enum.StrEnum):
     API_ERROR = "API_ERROR"
     PROCESS_ERROR = "PROCESS_ERROR"
     UNKNOWN_ERROR = "UNKNOWN_ERROR"
+    DEPENDENT_ERROR = "DEPENDENT_ERROR"
 
 
 class ExchangeSyncConfigSchema(BaseModel):
@@ -110,10 +111,14 @@ class ActionLogSchema(BaseModel):
     action_exchange_id: str
     action_exchange: EventExchange
     sync_time: datetime.datetime | None = None
+    sync_started: datetime.datetime | None = None
     synced: bool
     retryable: bool = Field(default=True)
     error: dict[datetime.datetime, str] | None = None
     error_code: ActionError | None = None
+    filter: str | None = None
+    dependent_on: int | None = None
+    dependent_to: int | None = None
 
     @model_validator(mode="before")
     def check_error(cls: Any, values: Any) -> Any:
