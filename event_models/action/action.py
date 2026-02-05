@@ -115,7 +115,7 @@ class ActionSchema(BaseModel):
     exchange: EventExchange | None = None
     new_id: int | None = None
     external_id: int | None = None
-    inventory_id: int
+    inventory_id: int | None = None
     dependent_to: int | None = None
     data: ActionData | None = None
     exchange_rules: dict[EventExchange, RuleType] | None = None
