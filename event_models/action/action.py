@@ -140,7 +140,7 @@ class ActionLogSchema(BaseModel):
     retryable: bool = Field(default=True)
     error: dict[datetime.datetime, str] | None = None
     error_code: ActionError | None = None
-    filter: str | None = None
+    filter: list[ActionFilterReason] | None = None
     dependent_on: int | None = None
     dependent_to: int | None = None
 
