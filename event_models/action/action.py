@@ -4,7 +4,7 @@ from collections import defaultdict
 from decimal import Decimal
 from typing import Annotated, Any, DefaultDict, Optional, Self
 
-from pydantic import BaseModel, Field, model_validator, field_validator
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from event_models.exchange.exchange import EventExchange
 
@@ -100,6 +100,7 @@ class ActionData(BaseModel):
     listing_price: Decimal = Field(description="Listing price")
     original_price: Decimal = Field(description="Original price")
     split_type: SplitType = Field(description="Split type")
+    custom_split: list[int] = Field(description="Custom split configuration")
     price_markup: PriceMarkup = Field(
         default_factory=defaultdict,
         description="Per-exchange price markup",
