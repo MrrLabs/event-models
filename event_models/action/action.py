@@ -100,14 +100,14 @@ class ActionData(BaseModel):
     listing_price: Decimal = Field(description="Listing price")
     original_price: Decimal = Field(description="Original price")
     split_type: SplitType = Field(description="Split type")
-    custom_split: list[int] = Field(description="Custom split configuration")
+    split_value: list[int] = Field(description="Custom split configuration")
     price_markup: PriceMarkup = Field(
         default_factory=defaultdict,
         description="Per-exchange price markup",
     )
 
-    @field_validator("custom_split", mode="before")
-    def validate_custom_split(cls, v: str | list[int]) -> list[int]:
+    @field_validator("split_value", mode="before")
+    def validate_split_value(cls, v: str | list[int]) -> list[int]:
         if isinstance(v, str):
             return [int(c) for c in v.split(",")]
 
