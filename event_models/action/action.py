@@ -109,7 +109,10 @@ class ActionData(BaseModel):
     @field_validator("split_value", mode="before")
     def validate_split_value(cls, v: str | list[int]) -> list[int]:
         if isinstance(v, str):
-            return [int(c) for c in v.split(",")]
+            if v.strip() == "":
+                return []
+
+            return [int(c) for c in v.split(",") if c.strip()]
 
         return v
 
