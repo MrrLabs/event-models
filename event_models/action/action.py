@@ -106,6 +106,13 @@ class ActionData(BaseModel):
         description="Per-exchange price markup",
     )
 
+    @field_validator("custom_split", mode="before")
+    def validate_custom_split(cls, v: str | list[int]) -> list[int]:
+        if isinstance(v, str):
+            return [int(c) for c in v.split(",")]
+
+        return v
+
 
 class ActionSchema(BaseModel):
     action_id: int
