@@ -157,6 +157,7 @@ class ActionLogSchema(BaseModel):
     filter: list[ActionFilterReason] | None = None
     dependent_on: int | None = None
     dependent_to: int | None = None
+    notes: str | None = None
 
     @model_validator(mode="before")
     def check_error(cls: Any, values: Any) -> Any:
