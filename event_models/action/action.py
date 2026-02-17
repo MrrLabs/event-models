@@ -2,7 +2,7 @@ import datetime
 import enum
 from collections import defaultdict
 from decimal import Decimal
-from typing import Annotated, Any, DefaultDict, Optional, Self, Literal
+from typing import Annotated, Any, DefaultDict, Literal, Optional, Self
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -172,3 +172,9 @@ class ActionLogSchema(BaseModel):
                 raise ValueError("Sync time is cant be set when sync is set to False")
 
         return values
+
+
+class ActionErrorRequestSchema(BaseModel):
+    action_id: int = Field(description="Action ID")
+    error: str = Field(description="Error message")
+    error_code: ActionError = Field(description="Error code")
