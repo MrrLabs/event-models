@@ -146,7 +146,9 @@ class ActionSchema(BaseModel):
 
 class ActionLogSchema(BaseModel):
     action_id: int
-    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
+        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    )
     action_exchange_id: int | None = None
     action_exchange: EventExchange
     sync_time: datetime.datetime | None = None
@@ -159,6 +161,13 @@ class ActionLogSchema(BaseModel):
     dependent_on: int | None = None
     dependent_to: int | None = None
     notes: str | None = None
+
+    @field_validator("action", mode="before")
+    @classmethod
+    def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
+        if isinstance(value, str):
+            return ActionStatus(value)
+        return value
 
     @model_validator(mode="before")
     def check_error(cls: Any, values: Any) -> Any:
