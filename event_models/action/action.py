@@ -146,6 +146,9 @@ class ActionSchema(BaseModel):
 
 class ActionLogSchema(BaseModel):
     action_id: int
+    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
+        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    )
     action_exchange_id: int | None = None
     action_exchange: EventExchange
     sync_time: datetime.datetime | None = None
