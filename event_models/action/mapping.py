@@ -7,6 +7,7 @@ from event_models.exchange.exchange import EventExchange
 
 
 class ListingExchangeBaseMappingSchema(BaseModel):
+    action_id: PositiveInt = Field(gt=0, examples=[1])
     listing_id: PositiveInt = Field(gt=0, examples=[1])
     exchange: EventExchange
     full_sync: bool = Field(default=False)
