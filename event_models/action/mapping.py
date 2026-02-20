@@ -7,8 +7,8 @@ from event_models.exchange.exchange import EventExchange
 
 
 class ListingExchangeBaseMappingSchema(BaseModel):
-    action_id: PositiveInt | None = Field(gt=0, examples=[1])
-    action_exchange_id: PositiveInt | None = Field(gt=0, examples=[1])
+    action_exchange_id_create: PositiveInt | None = Field(gt=0, examples=[1])
+    action_exchange_id_update: PositiveInt | None = Field(gt=0, examples=[1])
     listing_id: PositiveInt = Field(gt=0, examples=[1])
     exchange: EventExchange
     full_sync: bool = Field(default=False)
@@ -27,6 +27,8 @@ class ListingExchangeMappingRequestSchema(ListingExchangeBaseMappingSchema):
             "external_id": self.external_id,
             "valid_from": self.valid_from,
             "full_sync": self.full_sync,
+            "action_exchange_id_create": self.action_exchange_id_create,
+            "action_exchange_id_update": self.action_exchange_id_update,
         }
 
 
