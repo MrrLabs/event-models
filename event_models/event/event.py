@@ -20,6 +20,7 @@ class EventSource(enum.StrEnum):
     TELECHARGE = "telecharge"
     MPV = "mpv"
     ETIX = "etix"
+    EVENTIM = "eventim"
 
 
 class EventStoreType(enum.StrEnum):
@@ -35,6 +36,7 @@ class EventStoreType(enum.StrEnum):
     TELECHARGE = "telecharge"
     MPV = "mpv"
     ETIX = "etix"
+    EVENTIM = "eventim"
 
 
 class EventAction(enum.StrEnum):

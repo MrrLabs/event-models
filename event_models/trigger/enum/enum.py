@@ -19,6 +19,7 @@ class ScrapType(StrEnum):
     TELECHARGE = "telecharge"
     MPV = "mpv"
     ETIX = "etix"
+    EVENTIM = "eventim"
 
 
 class FailureReason(StrEnum):

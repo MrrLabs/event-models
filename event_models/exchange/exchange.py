@@ -18,3 +18,4 @@ class EventExchange(StrEnum):
     MPV = "mpv"
     TICKETNETWORK = "TicketNetwork"
     ETIX = "etix"
+    EVENTIM = "eventim"
