@@ -31,6 +31,7 @@ class TicketmasterPlaceAvailable(BaseModel):
     row: str | None
     # TODO temporary to none to be able to work with old schema
     row_rank: int | None
+    seat_rank: int | None
     # TODO temporary to none to be able to work with old schema
     seat_number: str | None
     attributes: list[str]
@@ -102,6 +103,7 @@ class TicketmasterEventAvailable(BaseModel):
                     section=None,
                     row=None,
                     row_rank=None,
+                    seat_rank=None,
                     seat_number=None,
                     attributes=[],
                     description=[],
@@ -128,12 +130,13 @@ class TicketmasterEventAvailable(BaseModel):
                     section=str(value_list[9]),
                     row=str(value_list[10]),
                     row_rank=int(value_list[11]) if value_list[11] is not None else None,
-                    seat_number=str(value_list[12]) if value_list[12] is not None else None,
-                    attributes=value_list[13],
-                    description=value_list[14],
-                    inserted=datetime.datetime.fromisoformat(value_list[15]),
-                    prev_updated=datetime.datetime.fromisoformat(str(value_list[16])) if value_list[16] else None,
-                    update_reason=value_list[17],
+                    seat_rank=int(value_list[12]) if value_list[12] is not None else None,
+                    seat_number=str(value_list[13]) if value_list[13] is not None else None,
+                    attributes=value_list[14],
+                    description=value_list[15],
+                    inserted=datetime.datetime.fromisoformat(value_list[16]),
+                    prev_updated=datetime.datetime.fromisoformat(str(value_list[17])) if value_list[17] else None,
+                    update_reason=value_list[18],
                 )
             else:
                 raise ValueError(
@@ -165,6 +168,7 @@ class TicketmasterEventAvailable(BaseModel):
                 place_data.section,
                 place_data.row,
                 place_data.row_rank,
+                place_data.seat_rank,
                 place_data.seat_number,
                 place_data.attributes,
                 place_data.description,
