@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field, model_validator
 
 from event_models.exchange.exchange import EventExchange
 
-type PriceMarkup = DefaultDict[
+type PriceMarkup = DefaultDict[  # type: ignore[valid-type]
     EventExchange,
     Annotated[Decimal, Field(default_factory=Decimal)],
 ]
