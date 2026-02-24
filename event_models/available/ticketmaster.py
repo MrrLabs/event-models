@@ -6,7 +6,7 @@ from pydantic import BaseModel, field_validator
 
 _ORIGINAL_REDIS_SCHEMA_LEN = 7
 _ORIGINAL_REDIS_SCHEMA_GA_LEN = 8
-_NEW_REDIS_SCHEMA_LEN = 18
+_NEW_REDIS_SCHEMA_LEN = 19
 
 
 class TicketmasterPlaceAvailable(BaseModel):
