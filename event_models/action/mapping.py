@@ -1,7 +1,6 @@
 import datetime
-from typing import Any
 
-from pydantic import BaseModel, PositiveInt, Field
+from pydantic import BaseModel, Field, PositiveInt
 
 from event_models.exchange.exchange import EventExchange
 
