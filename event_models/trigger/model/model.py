@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Optional
 
-from pydantic import UUID4, BaseModel, model_validator
+from pydantic import UUID4, BaseModel, model_validator, NonNegativeInt, Field
 
 from event_models.trigger.enum import FailureReason, ScrapType
 
@@ -11,6 +11,7 @@ class JobRunMessage(BaseModel):
     event_id: str
     scrap_type: ScrapType
     run_config: Optional[dict[str, Any]] | None = None
+    retry: NonNegativeInt = Field(default=0)
 
 
 class JobScrapMessage(BaseModel):
