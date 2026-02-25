@@ -1,7 +1,7 @@
 import datetime
 from typing import Any, Optional
 
-from pydantic import UUID4, BaseModel, model_validator, NonNegativeInt, Field
+from pydantic import UUID4, BaseModel, Field, NonNegativeInt, model_validator
 
 from event_models.trigger.enum import FailureReason, ScrapType
 
