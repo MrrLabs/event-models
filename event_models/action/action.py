@@ -143,6 +143,13 @@ class ActionSchema(BaseModel):
         description="Per-exchange counts",
     )
 
+    @field_validator("action", mode="before")
+    @classmethod
+    def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
+        if isinstance(value, str):
+            return ActionStatus(value)
+        return value
+
 
 class ActionLogSchema(BaseModel):
     action_id: int
