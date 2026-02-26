@@ -161,7 +161,6 @@ class ActionLogSchema(BaseModel):
     sync_time: datetime.datetime | None = None
     sync_started: datetime.datetime | None = None
     synced: bool
-    retryable: bool = Field(default=True)
     error: dict[datetime.datetime, str] | None = None
     error_code: ActionError | None = None
     filter: list[ActionFilterReason] | None = None
