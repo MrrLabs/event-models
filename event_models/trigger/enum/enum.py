@@ -20,6 +20,7 @@ class ScrapType(StrEnum):
     MPV = "mpv"
     ETIX = "etix"
     EVENTIM = "eventim"
+    OVATIONTIX = "ovationtix"
 
 
 class FailureReason(StrEnum):
