@@ -190,13 +190,6 @@ class ActionLogSchema(BaseModel):
         return values
 
 
-class ActionIgnoreLogSchema(BaseModel):
-    action_id: int
-    action_exchange_id: int | None = None
-    timestamp: datetime.datetime
-    notes: str | None = None
-
-
 class ActionErrorRequestSchema(BaseModel):
     action_id: int = Field(description="Action ID")
     error: str = Field(description="Error message")
