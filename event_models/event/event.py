@@ -21,6 +21,7 @@ class EventSource(enum.StrEnum):
     MPV = "mpv"
     ETIX = "etix"
     EVENTIM = "eventim"
+    OVATIONTIX = "ovationtix"
 
 
 class EventStoreType(enum.StrEnum):
@@ -37,6 +38,7 @@ class EventStoreType(enum.StrEnum):
     MPV = "mpv"
     ETIX = "etix"
     EVENTIM = "eventim"
+    OVATIONTIX = "ovationtix"
 
 
 class EventAction(enum.StrEnum):
