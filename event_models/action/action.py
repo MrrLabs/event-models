@@ -206,3 +206,15 @@ class ActionErrorRequestSchema(BaseModel):
     action_id: int = Field(description="Action ID")
     error: str = Field(description="Error message")
     error_code: ActionError = Field(description="Error code")
+
+
+class StoreSyncActionSchema(BaseModel):
+    created: datetime.datetime = Field(description="Action creation timestamp")
+    origin_id: int = Field(description="Listing id that originated this action")
+    action: ActionStatus = Field(description="Action to store")
+    sync_process_started: datetime.datetime = Field(description="Timestamp when sync process started")
+
+
+class StoreSyncActionResponseSchema(BaseModel):
+    origin_id: int = Field(description="Listing id that originated this action")
+    action_id: int = Field(description="Newly created listings_action id")
