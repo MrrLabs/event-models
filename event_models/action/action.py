@@ -118,8 +118,8 @@ class ActionData(BaseModel):
 class ActionSchema(BaseModel):
     action_id: int
     action_exchange_id: int | None = None
-    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
-        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    action: Literal[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE] = Field(
+        description="Action status", examples=[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE]
     )
     created: datetime.datetime
     origin_id: int
@@ -145,14 +145,21 @@ class ActionSchema(BaseModel):
     @classmethod
     def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
         if isinstance(value, str):
+            legacy_mapping = {
+                "ACTIVE": ActionStatus.CREATE,
+                "UPDATED": ActionStatus.UPDATE,
+                "REMOVED": ActionStatus.DELETE,
+            }
+            if value in legacy_mapping:
+                return legacy_mapping[value]
             return ActionStatus(value)
         return value
 
 
 class ActionLogSchema(BaseModel):
     action_id: int
-    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
-        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    action: Literal[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE] = Field(
+        description="Action status", examples=[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE]
     )
     action_exchange_id: int | None = None
     action_exchange: EventExchange
@@ -170,6 +177,13 @@ class ActionLogSchema(BaseModel):
     @classmethod
     def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
         if isinstance(value, str):
+            legacy_mapping = {
+                "ACTIVE": ActionStatus.CREATE,
+                "UPDATED": ActionStatus.UPDATE,
+                "REMOVED": ActionStatus.DELETE,
+            }
+            if value in legacy_mapping:
+                return legacy_mapping[value]
             return ActionStatus(value)
         return value
 
