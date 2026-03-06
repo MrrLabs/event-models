@@ -2,7 +2,7 @@ import datetime
 import enum
 from collections import defaultdict
 from decimal import Decimal
-from typing import Annotated, Any, DefaultDict, Literal, Optional, Self
+from typing import Annotated, Any, DefaultDict, Optional, Self
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -118,7 +118,7 @@ class ActionData(BaseModel):
 class ActionSchema(BaseModel):
     action_id: int
     action_exchange_id: int | None = None
-    action: Literal[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE] = Field(
+    action: ActionStatus = Field(
         description="Action status", examples=[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE]
     )
     created: datetime.datetime
@@ -158,9 +158,7 @@ class ActionSchema(BaseModel):
 
 class ActionLogSchema(BaseModel):
     action_id: int
-    action: Literal[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE] = Field(
-        description="Action status", examples=[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE]
-    )
+    action: ActionStatus = Field(description="Action status")
     action_exchange_id: int | None = None
     action_exchange: EventExchange
     sync_time: datetime.datetime | None = None
