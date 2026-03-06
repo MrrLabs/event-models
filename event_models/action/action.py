@@ -21,16 +21,13 @@ class SplitType(enum.Enum):
 
 # Same as ListingStatus in arb
 class ActionStatus(enum.Enum):
-    ACTIVE = "ACTIVE"
-    REMOVED = "REMOVED"
-    UPDATED = "UPDATED"
-    BLACKLISTED = "BLACKLISTED"
-    PARTIALLY_SOLD = "PARTIALLY_SOLD"
-    SOLD = "SOLD"
-    FINISHED = "FINISHED"
-    EXPIRED = "EXPIRED"
-    INACTIVE = "INACTIVE"
-    DISABLED_SALE = "DISABLED_SALE"
+    CREATE = "CREATE"
+    UPDATE = "UPDATE"
+    DELETE = "DELETE"
+    SYNC = "SYNC"
+    SYNC_CREATE = "SYNC_CREATE"
+    SYNC_UPDATE = "SYNC_UPDATE"
+    SYNC_DELETE = "SYNC_DELETE"
 
 
 class ActionError(enum.StrEnum):
