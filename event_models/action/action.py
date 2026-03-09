@@ -2,7 +2,7 @@ import datetime
 import enum
 from collections import defaultdict
 from decimal import Decimal
-from typing import Annotated, Any, DefaultDict, Literal, Optional, Self
+from typing import Annotated, Any, DefaultDict, Optional, Self
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
@@ -21,16 +21,13 @@ class SplitType(enum.Enum):
 
 # Same as ListingStatus in arb
 class ActionStatus(enum.Enum):
-    ACTIVE = "ACTIVE"
-    REMOVED = "REMOVED"
-    UPDATED = "UPDATED"
-    BLACKLISTED = "BLACKLISTED"
-    PARTIALLY_SOLD = "PARTIALLY_SOLD"
-    SOLD = "SOLD"
-    FINISHED = "FINISHED"
-    EXPIRED = "EXPIRED"
-    INACTIVE = "INACTIVE"
-    DISABLED_SALE = "DISABLED_SALE"
+    CREATE = "CREATE"
+    UPDATE = "UPDATE"
+    DELETE = "DELETE"
+    SYNC = "SYNC"
+    SYNC_CREATE = "SYNC_CREATE"
+    SYNC_UPDATE = "SYNC_UPDATE"
+    SYNC_DELETE = "SYNC_DELETE"
 
 
 class ActionError(enum.StrEnum):
@@ -121,8 +118,8 @@ class ActionData(BaseModel):
 class ActionSchema(BaseModel):
     action_id: int
     action_exchange_id: int | None = None
-    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
-        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
+    action: ActionStatus = Field(
+        description="Action status", examples=[ActionStatus.CREATE, ActionStatus.UPDATE, ActionStatus.DELETE]
     )
     created: datetime.datetime
     origin_id: int
@@ -148,15 +145,20 @@ class ActionSchema(BaseModel):
     @classmethod
     def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
         if isinstance(value, str):
+            legacy_mapping = {
+                "ACTIVE": ActionStatus.CREATE,
+                "UPDATED": ActionStatus.UPDATE,
+                "REMOVED": ActionStatus.DELETE,
+            }
+            if value in legacy_mapping:
+                return legacy_mapping[value]
             return ActionStatus(value)
         return value
 
 
 class ActionLogSchema(BaseModel):
     action_id: int
-    action: Literal[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED] = Field(
-        description="Action status", examples=[ActionStatus.ACTIVE, ActionStatus.UPDATED, ActionStatus.REMOVED]
-    )
+    action: ActionStatus = Field(description="Action status")
     action_exchange_id: int | None = None
     action_exchange: EventExchange
     sync_time: datetime.datetime | None = None
@@ -173,6 +175,13 @@ class ActionLogSchema(BaseModel):
     @classmethod
     def validate_action(cls, value: ActionStatus | str) -> ActionStatus | str:
         if isinstance(value, str):
+            legacy_mapping = {
+                "ACTIVE": ActionStatus.CREATE,
+                "UPDATED": ActionStatus.UPDATE,
+                "REMOVED": ActionStatus.DELETE,
+            }
+            if value in legacy_mapping:
+                return legacy_mapping[value]
             return ActionStatus(value)
         return value
 
@@ -195,3 +204,15 @@ class ActionErrorRequestSchema(BaseModel):
     action_id: int = Field(description="Action ID")
     error: str = Field(description="Error message")
     error_code: ActionError = Field(description="Error code")
+
+
+class StoreSyncActionSchema(BaseModel):
+    created: datetime.datetime = Field(description="Action creation timestamp")
+    origin_id: int = Field(description="Listing id that originated this action")
+    action: ActionStatus = Field(description="Action to store")
+    sync_process_started: datetime.datetime = Field(description="Timestamp when sync process started")
+
+
+class StoreSyncActionResponseSchema(BaseModel):
+    origin_id: int = Field(description="Listing id that originated this action")
+    action_id: int = Field(description="Newly created listings_action id")

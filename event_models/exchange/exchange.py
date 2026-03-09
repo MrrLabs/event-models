@@ -19,3 +19,4 @@ class EventExchange(StrEnum):
     TICKETNETWORK = "TicketNetwork"
     ETIX = "etix"
     EVENTIM = "eventim"
+    OVATIONTIX = "ovationtix"
