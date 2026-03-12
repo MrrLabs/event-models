@@ -216,3 +216,9 @@ class StoreSyncActionSchema(BaseModel):
 class StoreSyncActionResponseSchema(BaseModel):
     origin_id: int = Field(description="Listing id that originated this action")
     action_id: int = Field(description="Newly created listings_action id")
+
+
+class ActionSyncIgnoreSchema(BaseModel):
+    action_id: int = Field(description="Action ID to ignore during sync")
+    ignore_timestamp: datetime.datetime = Field(description="Timestamp when to ignore the action")
+    log_action: list[ActionLogSchema] = Field(description="List of actions to log")
