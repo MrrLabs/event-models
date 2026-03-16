@@ -203,7 +203,7 @@ class ActionLogSchema(BaseModel):
 class ActionErrorRequestSchema(BaseModel):
     action_id: int = Field(description="Action ID")
     error: str = Field(description="Error message")
-    error_code: ActionError = Field(description="Error code")
+    error_code: Optional[ActionError] | None = Field(description="Error code")
 
 
 class StoreSyncActionSchema(BaseModel):
