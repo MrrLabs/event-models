@@ -158,6 +158,7 @@ class ActionSchema(BaseModel):
 
 class ActionLogSchema(BaseModel):
     action_id: int
+    listing_id: int
     action: ActionStatus = Field(description="Action status")
     action_exchange_id: int | None = None
     action_exchange: EventExchange
