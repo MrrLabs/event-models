@@ -225,3 +225,8 @@ class ActionSyncIgnoreSchema(BaseModel):
     action_id: int = Field(description="Action ID to ignore during sync")
     ignore_timestamp: datetime.datetime = Field(description="Timestamp when to ignore the action")
     log_action: list[ActionLogSchema] = Field(description="List of actions to log")
+
+
+class ExchangeMappingSchema(BaseModel):
+    inventory_id: int
+    mappings: dict[EventExchange, int]
