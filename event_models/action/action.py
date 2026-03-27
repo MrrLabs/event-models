@@ -106,7 +106,7 @@ class ActionData(BaseModel):
     original_price: Decimal = Field(description="Original price")
     split_type: SplitType = Field(description="Split type")
     split_value: list[int] = Field(description="Custom split configuration")
-    stock_type: str = Field(description="Stock type")
+    stock_type: StockType = Field(description="Stock type")
     price_markup: PriceMarkup = Field(
         default_factory=defaultdict,
         description="Per-exchange price markup",
