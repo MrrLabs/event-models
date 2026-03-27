@@ -19,6 +19,12 @@ class SplitType(enum.Enum):
     ANY = "ANY"
 
 
+class StockType(enum.Enum):
+    ELECTRONIC = "ELECTRONIC"
+    MOBILE_SCREENCAP = "MOBILE_SCREENCAP"
+    MOBILE_TRANSFER = "MOBILE_TRANSFER"
+
+
 # Same as ListingStatus in arb
 class ActionStatus(enum.Enum):
     CREATE = "CREATE"
