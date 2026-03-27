@@ -223,6 +223,7 @@ class StoreSyncActionResponseSchema(BaseModel):
 
 class ActionSyncIgnoreSchema(BaseModel):
     action_id: int = Field(description="Action ID to ignore during sync")
+    dependent_to: int | None = Field(description="Dependent to ID to ignore during sync")
     ignore_timestamp: datetime.datetime = Field(description="Timestamp when to ignore the action")
     log_action: list[ActionLogSchema] = Field(description="List of actions to log")
 
