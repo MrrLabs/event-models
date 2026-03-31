@@ -20,3 +20,4 @@ class EventExchange(StrEnum):
     ETIX = "etix"
     EVENTIM = "eventim"
     OVATIONTIX = "ovationtix"
+    AXS = "AXS"
