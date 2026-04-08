@@ -12,6 +12,7 @@ class JobRunMessage(BaseModel):
     scrap_type: ScrapType
     run_config: Optional[dict[str, Any]] | None = None
     retry: NonNegativeInt = Field(default=0)
+    urgent: bool = False
 
 
 class JobScrapMessage(BaseModel):
