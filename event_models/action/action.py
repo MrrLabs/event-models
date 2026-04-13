@@ -50,6 +50,7 @@ class ActionError(enum.StrEnum):
     UPDATE_FORBIDDEN_ERROR = "UPDATE_FORBIDDEN"
     EVENT_MERGED = "EVENT_MERGED"
     PRICE_EXCEEDS = "PRICE_EXCEEDS"
+    INVALID_SECTION = "INVALID_SECTION"
 
 
 class RuleType(enum.StrEnum):
