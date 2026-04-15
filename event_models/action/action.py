@@ -31,9 +31,6 @@ class ActionStatus(enum.Enum):
     UPDATE = "UPDATE"
     DELETE = "DELETE"
     SYNC = "SYNC"
-    SYNC_CREATE = "SYNC_CREATE"
-    SYNC_UPDATE = "SYNC_UPDATE"
-    SYNC_DELETE = "SYNC_DELETE"
 
 
 class ActionError(enum.StrEnum):
