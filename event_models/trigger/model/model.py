@@ -35,5 +35,6 @@ class JobScrapMessage(BaseModel):
 
 class JobArbResultMessage(BaseModel):
     job_id: UUID4
+    arb_job_finished_at: datetime.datetime | None = None
     arb_success: Optional[bool] = None
     arb_notes: Optional[dict[str, Any]] | None = None
