@@ -31,3 +31,9 @@ class JobScrapMessage(BaseModel):
             raise ValueError("failure_reason must be provided if the job failed.")
 
         return values
+
+
+class JobArbResultMessage(BaseModel):
+    job_id: UUID4
+    arb_success: Optional[bool] = None
+    arb_notes: Optional[dict[str, Any]] | None = None
