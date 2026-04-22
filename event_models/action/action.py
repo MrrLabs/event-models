@@ -62,9 +62,9 @@ class ExchangeRule(BaseModel):
 
 
 class ActionFilterReason(enum.StrEnum):
-    EXCHANGE_RULE = "exchange_rule"
-    DATE_FILTER = "date_filter"
-    MAX_LISTINGS_LIMIT = "max_listings_limit"
+    EXCHANGE_RULE = "EXCHANGE_RULE"
+    DATE_FILTER = "DATE_FILTER"
+    MAX_LISTINGS_LIMIT = "MAX_LISTINGS_LIMIT"
 
 
 class ExchangeSyncConfigSchema(BaseModel):
