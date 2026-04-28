@@ -64,6 +64,7 @@ class ActionError(enum.StrEnum):
     PRICE_EXCEEDS = "PRICE_EXCEEDS"
     INVALID_SECTION = "INVALID_SECTION"
     RATE_LIMITED = "RATE_LIMITED"
+    EMPTY_ROW = "EMPTY_ROW"
 
 
 class RuleType(enum.StrEnum):
