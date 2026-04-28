@@ -51,6 +51,7 @@ class ActionError(enum.StrEnum):
     EVENT_MERGED = "EVENT_MERGED"
     PRICE_EXCEEDS = "PRICE_EXCEEDS"
     INVALID_SECTION = "INVALID_SECTION"
+    EMPTY_ROW = "EMPTY_ROW"
 
 
 class RuleType(enum.StrEnum):
