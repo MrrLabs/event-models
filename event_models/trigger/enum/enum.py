@@ -10,6 +10,7 @@ class ScrapType(StrEnum):
     EVENUE_SECTION = "evenue-section"
     EVENUE_PRICES = "evenue-prices"
     STUBHUB = "stubhub"
+    SEATGEEK = "seatgeek"
     TICKPICK = "tickpick"
     GOTICKETS = "gotickets"
     MILB = "milb"
