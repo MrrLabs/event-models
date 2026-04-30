@@ -11,7 +11,6 @@ class EventSource(enum.StrEnum):
     TICKETMASTER_FACET = "ticketmaster-facet"
     VIVIDSEATS = "vividseats"
     EVENUE_SEAT = "evenue-seat"
-    SEATGEEK = "Seatgeek"
     STUBHUB = "stubhub"
     SEATGEEK = "seatgeek"
     TICKPICK = "tickpick"
@@ -30,7 +29,6 @@ class EventSource(enum.StrEnum):
 class EventStoreType(enum.StrEnum):
     TICKETMASTER = "ticketmaster"
     VIVIDSEATS = "vividseats"
-    SEATGEEK = "Seatgeek"
     EVENUE = "evenue"
     TICKPICK = "tickpick"
     STUBHUB = "stubhub"

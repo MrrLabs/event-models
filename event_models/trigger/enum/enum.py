@@ -6,7 +6,6 @@ class ScrapType(StrEnum):
     TICKETMASTER_MAP = "ticketmaster-map"
     TICKETMASTER_FACET = "ticketmaster-facet"
     VIVIDSEATS = "vividseats"
-    SEATGEEK = "Seatgeek"
     EVENUE_SEAT = "evenue-seat"
     EVENUE_SECTION = "evenue-section"
     EVENUE_PRICES = "evenue-prices"
