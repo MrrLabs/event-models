@@ -65,6 +65,7 @@ class ActionError(enum.StrEnum):
     INVALID_SECTION = "INVALID_SECTION"
     RATE_LIMITED = "RATE_LIMITED"
     EMPTY_ROW = "EMPTY_ROW"
+    NOT_FOUND = "NOT_FOUND"
 
 
 class RuleType(enum.StrEnum):
