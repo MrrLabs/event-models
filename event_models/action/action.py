@@ -66,6 +66,7 @@ class ActionError(enum.StrEnum):
     RATE_LIMITED = "RATE_LIMITED"
     EMPTY_ROW = "EMPTY_ROW"
     NOT_FOUND = "NOT_FOUND"
+    TOO_MANY_REQUESTS = "TOO_MANY_REQUESTS"
 
 
 class RuleType(enum.StrEnum):
