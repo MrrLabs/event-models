@@ -21,3 +21,4 @@ class EventExchange(StrEnum):
     EVENTIM = "eventim"
     OVATIONTIX = "ovationtix"
     AXS = "AXS"
+    TIXR = "tixr"
