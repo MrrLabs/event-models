@@ -112,6 +112,7 @@ class ExchangeSyncConfigSchema(BaseModel):
 
 
 class ActionData(BaseModel):
+    source: str = Field(description="Source identifier")
     source_id: str = Field(description="Source identifier")
     local_datetime: datetime.datetime = Field(description="Local date and time of the event")
     listing_id: int = Field(description="Listing identifier")
