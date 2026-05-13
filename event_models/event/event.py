@@ -22,6 +22,8 @@ class EventSource(enum.StrEnum):
     ETIX = "etix"
     EVENTIM = "eventim"
     OVATIONTIX = "ovationtix"
+    AXS = "AXS"
+    TIXR = "tixr"
 
 
 class EventStoreType(enum.StrEnum):
@@ -39,6 +41,8 @@ class EventStoreType(enum.StrEnum):
     ETIX = "etix"
     EVENTIM = "eventim"
     OVATIONTIX = "ovationtix"
+    AXS = "AXS"
+    TIXR = "tixr"
 
 
 class EventAction(enum.StrEnum):

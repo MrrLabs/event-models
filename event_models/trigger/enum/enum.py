@@ -21,6 +21,8 @@ class ScrapType(StrEnum):
     ETIX = "etix"
     EVENTIM = "eventim"
     OVATIONTIX = "ovationtix"
+    AXS = "AXS"
+    TIXR = "tixr"
 
 
 class FailureReason(StrEnum):
